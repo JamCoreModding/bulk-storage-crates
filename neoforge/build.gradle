@@ -1,57 +1,57 @@
 plugins {
     id "com.github.johnrengelman.shadow" version "8.1.1"
-    {{#if unified_publishing}}
     id "me.shedaniel.unified-publishing"
-    {{/if}}
 }
 
 architectury {
     platformSetupLoomIde()
-    fabric()
+    neoForge()
 }
 
 base {
-    archivesName = "{{mod_id}}-fabric"
+    archivesName = "bulk_storage_crates-neoforge"
 }
 
 configurations {
     common
-    shadowCommon 
+    shadowCommon
     compileClasspath.extendsFrom common
     runtimeClasspath.extendsFrom common
-    developmentFabric.extendsFrom common
+    developmentNeoForge.extendsFrom common
+}
+
+repositories {
+    maven {
+        name = "NeoForge"
+        url = "https://maven.neoforged.net"
+    }
 }
 
 dependencies {
-    modImplementation libs.fabric.loader
-    modImplementation libs.fabric.api
-    modImplementation libs.architectury.fabric
-    modRuntimeOnly libs.modmenu
-    modImplementation libs.jamlib.fabric
+    neoForge libs.neoforge
+    modImplementation libs.architectury.neoforge
+    modImplementation libs.jamlib.neoforge
+
+    // Dependency of JamLib
+    forgeRuntimeLibrary "blue.endless:jankson:1.2.3"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
-    shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
+    shadowCommon(project(path: ":common", configuration: "transformProductionNeoForge")) { transitive = false }
 }
-{{#if unified_publishing}}
 
 if (System.getenv("CURSEFORGE_API_KEY") != null && System.getenv("MODRINTH_API_KEY") != null) {
 // Uncomment these lines and fill in the IDs when ready to publish :)
 //    unifiedPublishing {
 //        project {
-//            displayName = "V${project.version} (Fabric ${project.minecraft_version})"
+//            displayName = "V${project.version} (NeoForge ${project.minecraft_version})"
 //            changelog = rootProject.file("CHANGELOG.md").text
 //            releaseType = project.version.contains("beta") ? "beta" : "release"
 //            gameVersions = [project.minecraft_version, *(project.additional_minecraft_versions == "" ? [] : project.additional_minecraft_versions.split(","))]
-//            gameLoaders = ["fabric"]
+//            gameLoaders = ["neoforge"]
 //
 //            mainPublication tasks.remapJar
 //
 //            relations {
-//                depends {
-//                    curseforge = "fabric-api"
-//                    modrinth = "fabric-api"
-//                }
-//
 //                depends {
 //                    curseforge = "architectury-api"
 //                    modrinth = "architectury-api"
@@ -75,25 +75,25 @@ if (System.getenv("CURSEFORGE_API_KEY") != null && System.getenv("MODRINTH_API_K
 //        }
 //    }
 }
-{{/if}}
 
 processResources {  
-	def substitutions = [
-	        "version"             : project.version,
-	        "minecraft_version"   : project.minimum_minecraft_version,
-	        "fabric_api_version"  : project.minimum_fabric_api_version,
-	        "architectury_version": project.minimum_architectury_api_version,
-	        "jamlib_version"      : project.minimum_jamlib_version
-	]
+    def substitutions = [  
+            "version"             : project.version,
+            "minecraft_version"   : project.minimum_minecraft_version,
+            "neoforge_version"    : project.minimum_minecraft_version.substring(2),
+            "architectury_version": project.minimum_architectury_api_version,
+            "jamlib_version"      : project.minimum_jamlib_version
+    ]
 
-    filesMatching("fabric.mod.json") {
+    filesMatching("META-INF/neoforge.mods.toml") {
         expand substitutions
     }
 
-    substitutions.each { inputs.property it.key, it.value }
+    substitutions.each { inputs.property it.key, it.value } 
 }
 
 shadowJar {
+    exclude "fabric.mod.json"
     exclude "architectury.common.json"
 
     configurations = [project.configurations.shadowCommon]
@@ -101,7 +101,6 @@ shadowJar {
 }
 
 remapJar {
-    injectAccessWidener = true
     input.set shadowJar.archiveFile
     dependsOn shadowJar
 }

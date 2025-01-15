@@ -27,7 +27,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "{{ mod_id }}"
+rootProject.name = "bulk_storage_crates"
 include("common")
 include("fabric")
 include("neoforge")

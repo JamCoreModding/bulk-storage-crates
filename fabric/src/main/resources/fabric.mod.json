@@ -1,27 +1,27 @@
 {
     "schemaVersion": 1,
-    "id": "{{ mod_id }}",
+    "id": "bulk_storage_crates",
     "version": "${version}",
-    "name": "{{ name }}",
-    "description": "{{ description }}",
+    "name": "Bulk Storage Crates",
+    "description": "Adds transportable crates for all your bulk storage needs",
     "authors": [
-        "{{ author }}"
+        "Jamalam"
     ],
     "contact": {
-        "homepage": "https://github.com/{{github_owner}}/{{github_repo}}",
-        "sources": "https://github.com/{{github_owner}}/{{github_repo}}",
-        "issues": "https://github.com/{{github_owner}}/{{github_repo}}/issues"
+        "homepage": "https://github.com/JamCoreModding/bulk-storage-crates",
+        "sources": "https://github.com/JamCoreModding/bulk-storage-crates",
+        "issues": "https://github.com/JamCoreModding/bulk-storage-crates/issues"
     },
     "license": "MIT",
-    "icon": "assets/{{mod_id}}/icon.png",
+    "icon": "assets/bulk_storage_crates/icon.png",
     "environment": "*",
     "entrypoints": {
         "main": [
-            "{{group}}.{{mod_id}}.fabric.{{main_class}}Fabric"
+            "io.github.jamalam360.bulk_storage_crates.fabric.BulkStorageCratesFabric"
         ]
     },
     "mixins": [
-        "{{mod_id}}.mixins.json"
+        "bulk_storage_crates.mixins.json"
     ],
     "depends": {
         "fabric": ">=${fabric_api_version}",

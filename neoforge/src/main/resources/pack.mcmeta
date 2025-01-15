@@ -1,6 +1,6 @@
 {
     "pack": {
-        "description": "{{ name }}",
+        "description": "Bulk Storage Crates",
         "pack_format": 15
     }
 }
