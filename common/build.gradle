@@ -2,6 +2,25 @@ architectury {
     common(rootProject.enabled_platforms.split(","))
 }
 
+sourceSets {
+    main {
+        resources {
+            srcDirs "src/generated/resources"
+        }
+    }
+}
+
+loom {
+    splitEnvironmentSourceSets()
+
+    mods {
+        bulk_storage_crates {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
+}
+
 dependencies {
     modImplementation libs.fabric.loader
     modImplementation libs.architectury.common

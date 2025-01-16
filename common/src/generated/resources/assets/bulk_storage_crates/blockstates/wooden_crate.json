@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lidded=false": {
+      "model": "bulk_storage_crates:block/unlidded_wooden_crate"
+    },
+    "lidded=true": {
+      "model": "bulk_storage_crates:block/lidded_wooden_crate"
+    }
+  }
+}

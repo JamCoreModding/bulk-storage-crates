@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "bulk_storage_crates",
+  "version": "1.0.0",
+  "name": "Bulk Storage Crates",
+  "description": "",
+  "authors": [
+  ],
+  "contact": {
+  },
+  "license": "MIT",
+  "icon": "assets/bulk_storage_crates/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.jamalam360.bulk_storage_crates.datagen.BulkStorageCratesBootstrap"
+    ],
+    "fabric-datagen": [
+      "io.github.jamalam360.bulk_storage_crates.datagen.BulkStorageCratesDatagen"
+    ]
+  },
+  "mixins": [
+    "bulk_storage_crates.mixins.json"
+  ],
+  "depends": {
+  }
+}

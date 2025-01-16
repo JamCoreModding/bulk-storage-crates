@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "bulk_storage_crates:item/crate_lid"
+  }
+}

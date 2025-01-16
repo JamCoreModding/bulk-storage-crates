@@ -1,0 +1,8 @@
+{
+  "parent": "bulk_storage_crates:block/crate_unlidded",
+  "textures": {
+    "bottom": "bulk_storage_crates:block/wooden_crate_bottom",
+    "particle": "bulk_storage_crates:block/wooden_crate_side",
+    "side": "bulk_storage_crates:block/wooden_crate_side"
+  }
+}

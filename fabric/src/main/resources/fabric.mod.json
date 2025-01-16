@@ -18,6 +18,9 @@
     "entrypoints": {
         "main": [
             "io.github.jamalam360.bulk_storage_crates.fabric.BulkStorageCratesFabric"
+        ],
+        "client": [
+            "io.github.jamalam360.bulk_storage_crates.fabric.BulkStorageCratesClientFabric"
         ]
     },
     "mixins": [

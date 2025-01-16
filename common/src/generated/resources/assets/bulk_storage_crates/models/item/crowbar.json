@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "bulk_storage_crates:item/crowbar"
+  }
+}

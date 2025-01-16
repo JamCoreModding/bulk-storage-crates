@@ -29,5 +29,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "bulk_storage_crates"
 include("common")
+include("datagen")
 include("fabric")
 include("neoforge")
